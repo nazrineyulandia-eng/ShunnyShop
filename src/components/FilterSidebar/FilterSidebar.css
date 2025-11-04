@@ -1,0 +1,11 @@
+/* TODO: Add FilterSidebar styles */
+
+.filter-sidebar {
+  width: 250px;
+  padding: 16px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  background: #fff;
+}
+
+

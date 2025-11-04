@@ -1,0 +1,79 @@
+/* TODO: Add ProductGrid styles (grid layout) */
+
+.product-grid {
+  padding: 1rem 0;
+}
+
+.product-grid__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.product-grid__category,
+.product-grid__sort,
+.product-grid__search {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: #fff;
+}
+
+/* search + clear wrapper sudah ada */
+.product-grid__search-wrap { position: relative; display: inline-block; }
+.product-grid__search { padding-right: 2rem; }
+.product-grid__clear {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* grid list */
+.product-grid__list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* responsive */
+@media (min-width: 768px) {
+  .product-grid__list { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+  .product-grid__list { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* placeholder card for loading */
+.product-card.placeholder {
+  height: 320px;
+  background: linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s linear infinite;
+  border-radius: 8px;
+}
+
+/* simple shimmer */
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* meta / pagination */
+.product-grid__meta { margin-left: auto; font-size: 0.9rem; color:#444; }
+.product-grid__pagination { margin-top: 1.25rem; display:flex; gap:0.5rem; justify-content:center; }
+
+/* image utility if needed (ensure ProductCard img uses .product-card_image) */
+.product-card_image {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  background: #fff;
+}
+

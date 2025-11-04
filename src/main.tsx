@@ -1,0 +1,23 @@
+// TODO: Setup React main entry point
+// TODO: Import App and CartProvider
+// TODO: Render to DOM
+
+import { StrictMode } from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
+import { CartProvider } from './context/CartContext';
+import { FavoriteProvider } from './context/FavoriteContext';
+import './styles/globals.css';
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <BrowserRouter>
+      <CartProvider>
+        <FavoriteProvider>
+          <App />
+        </FavoriteProvider>
+      </CartProvider>
+    </BrowserRouter>
+  </StrictMode>
+);

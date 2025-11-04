@@ -1,0 +1,228 @@
+.site-header {
+  background: linear-gradient(90deg, #0b3458 0%, #0e4a78 50%, #0b3458 100%);
+  color: #fff;
+  padding: 12px 0;
+  box-shadow: 0 2px 8px rgba(3, 20, 34, 0.12);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* beri juga padding horizontal bawaan untuk safety pada layar kecil */
+  padding-left: 24px; /* jarak kiri agar logo tidak menempel */
+  padding-right: 24px; /* konsisten di kanan */
+  box-sizing: border-box;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: space-between; /* logo kiri, cart kanan */
+  gap: 12px;
+  padding: 12px 16px; /* tambahkan padding kiri/kanan agar tidak nempel ke tepi */
+}
+
+/* brand */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: 700;
+  color: #fff;
+}
+.brand-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* center search */
+.header-center {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+/* right cart */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; /* jarak antar ikon/button */
+}
+
+/* make cart button larger and card-like */
+.cart-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;              /* ukuran tombol */
+  height: 45px;
+  padding: 8px;
+  border-radius: 12px;      /* card corner */
+  background: rgba(255,255,255,0.06); /* subtle card on dark header */
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 4px 10px rgba(2,6,23,0.25);
+  cursor: pointer;
+  position: relative;
+}
+
+/* make the icon bigger and centered */
+.cart-button .cart-icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+  color: #fff;
+}
+
+/* larger, more visible badge */
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ff6b6b;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 7px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* optional: increase hit area on small screens */
+@media (max-width: 480px) {
+  .cart-button { width: 44px; height: 44px; }
+  .cart-badge { font-size: 11px; padding: 3px 6px; }
+}
+
+.cart-button:hover {
+  background: rgba(255,255,255,0.10);
+}
+
+/* Tombol favorite: biru background, icon putih, efek hover */
+.favorites-button {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.08); /* <-- border putih tipis seperti cart */
+  padding: 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease;
+  box-shadow: 0 4px 10px rgba(2,6,23,0.25);
+  width: 45px;
+  height: 45px;
+  margin-right: 2px;
+}
+
+/* optional: hover match cart hover feel */
+.favorites-button:hover {
+  background: rgba(255,255,255,0.10);
+}
+
+.favorites-button .favorites-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  color: #fff;
+}
+
+.favorites-button svg {
+  width: 20px;
+  height: 20px;
+  color: #fff; /* svg uses currentColor / fill="currentColor" */
+  fill: currentColor;
+}
+
+.favorite-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #ff6b6b;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 7px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* wrapper for label + balance */
+.balance-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  min-width: 110px;
+}
+
+/* small label above the balance */
+.balance-label {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.9);
+  opacity: 0.95;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+}
+
+/* existing .balance (keep visual style but tighten spacing) */
+.balance {
+  background: #0b3458;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.28rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(11,94,168,0.12);
+}
+
+/* smaller screens */
+@media (max-width: 420px) {
+  .balance-wrapper { min-width: 80px; }
+  .balance-label { font-size: 0.7rem; }
+  .balance { font-size: 0.82rem; padding: 0.22rem 0.45rem; }
+}
+
+/* beri ruang untuk konten utama agar tidak menempel ke header */
+main, .container {
+  padding-top: 16px;
+}
+
+/* beri jarak horizontal untuk seluruh header content */
+.header-inner.container,
+.container {
+  /* batasi lebar dan beri padding samping agar konten tidak nempel */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+/* ekstra spacing khusus area kiri jika perlu */
+.header-left {
+  padding-left: 8px;
+}
+
+/* jika brand/logo masih terlalu dekat, naikkan nilai ini */
+.brand,
+.logo {
+  margin-left: 6px;
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .search-wrap { max-width: 420px; }
+  .brand-name { display: none; }
+}

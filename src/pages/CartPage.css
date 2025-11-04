@@ -1,0 +1,101 @@
+/* TODO: Add CartPage styles */
+
+.cart-page {    
+  padding: 20px;
+}
+
+.cart-items {
+  margin-top: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;        /* jarak dari tepi card (atas/bawah, kiri/kanan) */
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+/* Pastikan detail (title/qty/price) di kiri */
+.cart-item_details {
+  order: 1;
+  flex: 1 1 auto;
+  margin-left: 0;            /* jangan nempel */
+  padding-left: 8px;
+}
+
+/* Price dan remove di kiri (dalam area details) */
+.cart-item_price {
+  order: 2;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #e53935;
+  margin: 8px 0;             /* jarak vertikal */
+}
+
+/* Jika tombol Remove punya class berbeda, tambahkan selector sesuai markup */
+.remove-button,
+.cart-item__remove {
+  order: 3;
+  background: #fff;
+  color: #e35b5b;
+  border: 1px solid rgba(227,91,91,0.15);
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-left: 0;            /* pastikan tidak nempel ke kiri */
+}
+
+/* Gambar produk diposisikan paling kanan */
+.cart-item_image {
+  order: 4;                  /* tampil terakhir (paling kanan) */
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fafafa;
+  margin-left: 12px;         /* jarak dari konten kiri */
+  margin-right: 8px;         /* jarak dari tepi kanan card */
+}
+
+/* Responsif: kurangi padding / ukuran gambar di layar kecil */
+@media (max-width: 600px) {
+  .cart-item {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .cart-item_image { width: 64px; height: 64px; margin-left: 10px; }
+  .cart-item_details { padding-left: 6px; }
+}
+
+.cart-summary {
+  margin-top: 24px;
+  text-align: right;
+}
+
+.cart-summary_total {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.checkout-button {
+  margin-top: 16px;
+  padding: 12px 24px;
+  background: #ff5722;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.checkout-button:hover {
+  background: #e64a19;
+}
+
+/* Tambahkan gaya tambahan sesuai kebutuhan */

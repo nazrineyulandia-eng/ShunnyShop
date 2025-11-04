@@ -1,0 +1,15 @@
+/* TODO: Add global styles */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Tambahkan gaya tambahan sesuai kebutuhan */

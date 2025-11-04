@@ -1,0 +1,222 @@
+/* TODO: Add ProductCard styles */
+.product-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: left;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    cursor: pointer;
+    min-height: '500px';
+}
+
+.product-card_link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.product-card_image {
+    width: 100%;
+    height: 200px;
+    /* batasi tinggi agar kartu konsisten */
+    border-radius: 6px;
+    margin-bottom: 8px;
+    object-fit: contain;
+    display: block;
+    background: #fafafa;
+    /* placeholder saat gambar lambat load */
+}
+
+.product-card_name {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    color: #333;
+}
+
+.product-card_price {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #e53935;
+    margin: 4px 0 8px 0;
+}
+
+/* Footer/meta area: letakkan price dan tombol berdampingan */
+.product-card_meta,
+.home-product_meta,
+.product-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* price kiri, tombol kanan */
+  gap: 12px;
+  margin-top: auto; /* dorong footer ke bawah kartu */
+  padding-top: 8px;
+  box-sizing: border-box;
+}
+
+/* Harga tetap rata kiri */
+.product-card_price,
+.home-product_price,
+.product-price {
+  text-align: left;
+  font-weight: 700;
+  color: #e53935;
+  white-space: nowrap;
+}
+
+/* Tombol add-to-cart: ukuran seragam dan letak kanan */
+.add-to-cart-btn,
+.product-card .btn-add,
+.home-add-to-cart {
+  appearance: none;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  flex: 0 0 auto; /* jangan mengembang */
+}
+
+/* Jika butuh tombol lebih menonjol */
+.add-to-cart-btn.primary,
+.btn-add.primary {
+  background: #e53935;
+  color: #fff;
+  border-color: #e53935;
+}
+
+/* Pastikan tombol tidak memecah baris pada kartu yang sempit */
+.product-card_meta > * {
+  min-width: 0;
+}
+
+.product-card_meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: space-between;
+}
+
+.product-card_rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #ffb400;
+    font-size: 0.9rem;
+}
+
+.stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    color: #ffb400;
+}
+
+.rating-stars {
+    color: #ffb400;
+    font-size: 0.95rem;
+    line-height: 1;
+}
+
+.rating-value {
+    color: #333;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.rating-count {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.product-card_add {
+    background-color: #ff5722;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    align-self: start;
+    transition: background-color 150ms ease, transform 100ms ease;
+}
+
+.product-card_add:hover {
+    background-color: #e64a19;
+}
+
+.product-card_add:active {
+    transform: translateY(1px);
+}
+
+.sr-only {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important;
+}
+
+/* Warna bintang/ rating jadi emas/kuning */
+.product-rating,
+.product-rating .star,
+.product-rating i,
+.product-rating svg,
+.product-rating .fa-star,
+.product-rating .fas,
+.rating,
+.rating .star,
+.rating i,
+.star-rating,
+.star-rating i,
+.fa-star,
+.fas.fa-star {
+    color: #f5a623 !important;
+    /* warna teks/icon */
+    fill: #f5a623 !important;
+    /* jika icon SVG */
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    /* pastikan jelas tanpa glow */
+}
+
+/* Bintang kosong / outline (mis. .far, .fa-star-o) beri warna abu-abu lembut */
+.product-rating .far,
+.product-rating .fa-star-o,
+.rating .far,
+.rating .fa-star-o {
+    color: #e0e0e0 !important;
+    fill: #e0e0e0 !important;
+}
+
+/* Jika bintang di-render sebagai background image atau inline SVG, paksa warna via filter (fallback) */
+.product-rating svg path,
+.product-rating svg circle {
+    fill: #f5a623 !important;
+}
+
+.product-card_info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.add-to-cart-btn.primary {
+    background: #005bb5;
+    color: #fff;
+    border-color: #0b3458;
+}
+
+.add-to-cart-btn.primary:hover {
+    background: #004a99;
+    border-color: #0b3458;
+}
