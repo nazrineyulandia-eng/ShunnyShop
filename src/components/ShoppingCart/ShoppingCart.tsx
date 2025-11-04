@@ -100,7 +100,7 @@ export default function ShoppingCart(): JSX.Element {
 
     // then remove items from cart
     if (typeof removeFromCart === 'function') {
-      selectedItems.forEach((it: CartItem) => removeFromCart(it.id as string | number));
+      selectedItems.forEach((it: CartItem) => removeFromCart(Number(it.id)));
     }
   };
 
@@ -146,9 +146,9 @@ export default function ShoppingCart(): JSX.Element {
                       <div className="cart-qty" aria-label={`Quantity of ${it.title}`}>
                         {typeof updateQuantity === 'function' ? (
                           <>
-                            <button type="button" onClick={() => updateQuantity(it.id as string | number, Math.max(1, (it.quantity ?? 1) - 1))} aria-label="Decrease quantity">−</button>
+                            <button type="button" onClick={() => updateQuantity(Number(it.id), Math.max(1, (it.quantity ?? 1) - 1))} aria-label="Decrease quantity">−</button>
                             <input type="number" value={it.quantity ?? 1} readOnly aria-readonly />
-                            <button type="button" onClick={() => updateQuantity(it.id as string | number, (it.quantity ?? 1) + 1)} aria-label="Increase quantity">+</button>
+                            <button type="button" onClick={() => updateQuantity(Number(it.id), (it.quantity ?? 1) + 1)} aria-label="Increase quantity">+</button>
                           </>
                         ) : (
                           <span>Qty: {it.quantity ?? 1}</span>
@@ -160,7 +160,7 @@ export default function ShoppingCart(): JSX.Element {
                   </div>
 
                   <div className="cart-actions">
-                    <button type="button" className="btn-remove" onClick={() => typeof removeFromCart === 'function' && removeFromCart(it.id as string | number)}>
+                    <button type="button" className="btn-remove" onClick={() => typeof removeFromCart === 'function' && removeFromCart(Number(it.id))}>
                       Remove
                     </button>
                   </div>
