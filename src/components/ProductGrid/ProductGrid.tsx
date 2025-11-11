@@ -151,7 +151,14 @@ function ProductGrid(): JSX.Element {
                     ))
                 ) : (
                     paginatedData.map((product: Product) => (
-                        <ProductCard key={product.id} product={product} />
+                        <ProductCard 
+                            key={product.id} 
+                            product={product}
+                            onRefresh={() => {
+                                // Refresh data
+                                setCurrentPage(1);
+                            }}
+                        />
                     ))
                 )}
             </div>

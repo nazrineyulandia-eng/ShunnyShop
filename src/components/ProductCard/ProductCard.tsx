@@ -3,6 +3,7 @@ import { Product } from '../../types';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { useFavorites } from '../../context/FavoriteContext';
+import { useState } from 'react';
 
 type Props = { product: Product };
 
@@ -12,10 +13,35 @@ export default function ProductCard({ product }: Props): JSX.Element {
     const navigate = useNavigate();
     const { addToCart } = useCart();
     const { isFavorite, toggleFavorite } = useFavorites();
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const onClickCard = () => {
         navigate(`/product/${product.id}`);
     }
+
+    const handleDelete = async () => {
+        if (!window.confirm('Yakin ingin menghapus product ini?')) return;
+
+        setIsDeleting(true);
+        try {
+            const response = await fetch(`http://localhost:5000/api/products/${product.id}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                alert('Product berhasil dihapus');
+                // onDelete?.(product.id);
+                // onRefresh?.();
+            } else {
+                alert('Gagal menghapus product');
+            }
+        } catch (error) {
+            console.error('Delete error:', error);
+            alert('Error menghapus product');
+        } finally {
+            setIsDeleting(false);
+        }
+    };
 
     return (
         <article className="product-card" onClick={onClickCard} role="button" tabIndex={0}>
@@ -63,6 +89,14 @@ export default function ProductCard({ product }: Props): JSX.Element {
                             aria-label={`Add ${product.title} to cart`}
                         >
                             Add to cart
+                        </button>
+
+                        <button
+                            onClick={handleDelete}
+                            disabled={isDeleting}
+                            className="product-card__btn product-card__btn--delete"
+                        >
+                            {isDeleting ? '⏳' : '🗑️'} Delete
                         </button>
                     </div>
                 </div>

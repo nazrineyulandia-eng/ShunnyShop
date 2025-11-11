@@ -1,7 +1,18 @@
 // TODO: Create useFetchProducts hook to fetch from FakeStoreAPI
 
 import { useState, useEffect, useMemo } from 'react';
-import { Product } from '../types/Product';
+
+type Product = {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+    rating: number;
+    createdAt?: string;
+    updatedAt?: string;
+};
 
 type FetchOptions = {
     search?: string;
@@ -16,48 +27,63 @@ const useFetchProducts = (options: FetchOptions) => {
 
     useEffect(() => {
         const controller = new AbortController();
-        const signal = controller.signal;
-
-        const fetchProducts = async () => {
-            setLoading(true);
-            setError(null);
-
-
+        const fetchData = async () => {
             try {
-                const url = options?.category
-                    ? `https://fakestoreapi.com/products/category/${options.category}`
-                    : 'https://fakestoreapi.com/products';
+                setLoading(true);
+                setError(null);
 
-                const response = await fetch(url, { signal });
-                if (!response.ok) throw new Error('Network response was not ok')
-                const data: Product[] = await response.json();
-                setRawProducts(data);
-            } catch (error) {
-                if ((error as any).name !== 'AbortError') {
-                    setError((error as any).message);
+                // Fetch dari backend API (bukan FakeStoreAPI)
+                const response = await fetch('http://localhost:5000/api/products', {
+                    signal: controller.signal,
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                // Backend return format: { success: true, data: [...] }
+                setRawProducts(data.data || []);
+            } catch (err) {
+                if (err instanceof Error && err.name !== 'AbortError') {
+                    setError(err.message);
+                    console.error('Fetch error:', err);
                 }
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchProducts();
+        fetchData();
+
         return () => controller.abort();
     }, [options?.category]);
 
+    // Filter products based on search dan limit
     const products = useMemo(() => {
-        let result = rawProducts;
+        let filtered = [...rawProducts];
 
+        // Filter by search
         if (options?.search) {
-            const q = options.search.toLowerCase();
-            result = result.filter(p => p.title.toLowerCase().includes(q));
+            filtered = filtered.filter(product =>
+                product.title.toLowerCase().includes(options.search?.toLowerCase() || '')
+            );
         }
 
-        if (options?.limit && options.limit > 0) {
-            result = result.slice(0, options.limit);
+        // Filter by category
+        if (options?.category) {
+            filtered = filtered.filter(product =>
+                product.category.toLowerCase() === options.category?.toLowerCase()
+            );
         }
 
-        return result;
+        // Limit results
+        if (options?.limit) {
+            filtered = filtered.slice(0, options.limit);
+        }
+
+        return filtered;
     }, [rawProducts, options?.search, options?.limit]);
 
     return { products, loading, error, rawProducts };
